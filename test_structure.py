@@ -63,8 +63,9 @@ def test_job_storage():
 
 def test_config_values():
     """Test configuration values"""
-    # Import config
-    sys.path.insert(0, '/home/runner/work/opencode-modal-server/opencode-modal-server')
+    # Import config using relative path
+    script_dir = Path(__file__).parent
+    sys.path.insert(0, str(script_dir))
     import config
     
     assert config.APP_NAME == "opencode-server", "APP_NAME incorrect"
@@ -78,7 +79,7 @@ def test_config_values():
 
 def test_requirements():
     """Test that requirements.txt is properly formatted"""
-    req_file = Path('/home/runner/work/opencode-modal-server/opencode-modal-server/requirements.txt')
+    req_file = Path(__file__).parent / 'requirements.txt'
     
     assert req_file.exists(), "requirements.txt not found"
     
